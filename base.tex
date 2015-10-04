@@ -1,0 +1,38 @@
+%%% man kann keine | im Text benutzen, habe ich umdefiniert!!!
+
+\documentclass[10pt, a4paper,twoside]{report}
+\special{papersize=210mm,297mm}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{srcltx}
+\usepackage{guitarplus, makeidx}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\setlength{\columnsep}{1cm}
+\usepackage[a4paper,inner=3.5cm,outer=2.5cm,top=1cm,bottom=2.5cm,pdftex]{geometry}
+
+
+\makeindex
+\renewcommand{\indexname}{Songs}
+
+\begin{document}
+\pagestyle{plain}
+\begin{titlepage}
+\center
+{\Huge Lindenplayer}\\[0.5cm]
+{\huge ''Songs we sing''}\\[1cm]
+{\LARGE The white Karnickel and the brown B\"ar}\\[0.5cm]
+{\large \today}\\[2cm] 
+\includegraphics[width=0.5\textwidth]{shutTheFuckUp.ps}
+\end{titlepage}
+
+
+\tableofcontents
+
+\pagestyle{plain}
+CONTENT
+\newpage
+\printindex
+\end{document}
