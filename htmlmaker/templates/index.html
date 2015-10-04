@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1"> 
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <nav id="main-navigation"> 
+      <b>Lindenplaya - Songs we sing</b>
+      <ul>
+        {% for (k, v) in alphabetic_index -%}
+          <li><a href="#{{k}}">{{v}}</a></li>
+        {% endfor %}
+      <ul>
+    </nav>
+  </div>
+
+<!--h2>Lindenplaya - Songs we sing</h2>
+<img src='shut_the_fuck_up.jpg'/-->
+<br/>
+<br/>
+<br/>
+{{index}}
+</body>
+</html>
