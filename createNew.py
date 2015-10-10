@@ -23,7 +23,8 @@ def main(args):
     song_name_clean = rm_special_chars(song_name)
 
     # create artist folder
-    path = os.mkdir(os.path.join('artists', band_name_clean))
+    path = os.path.join('artists', band_name_clean)
+    os.mkdir(path)
     if not os.path.isdir(path):
         for alreadyThere in os.listdir('artists'):
             if alreadyThere.lower() == band_name_clean.lower():
@@ -36,9 +37,9 @@ def main(args):
         os.mkdir(path)
 
     # check that song does not already exist
-    path = os.path.exists(reduce(
+    path = reduce(
         lambda x, y: os.path.join(x, y),
-        ['artists', band_name_clean, song_name_clean + '.tex']))
+        ['artists', band_name_clean, song_name_clean + '.tex'])
     if os.path.exists(path):
         logging.error("Oha, den Song {} gibt's irgendwie schon!".format(
             path))
