@@ -24,7 +24,10 @@ def main(args):
 
     # create artist folder
     path = os.path.join('artists', band_name_clean)
-    os.mkdir(path)
+    try:
+        os.mkdir(path)
+    except OSError:
+        pass
     if not os.path.isdir(path):
         for alreadyThere in os.listdir('artists'):
             if alreadyThere.lower() == band_name_clean.lower():

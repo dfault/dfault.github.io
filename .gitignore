@@ -1,0 +1,11 @@
+# vim swap files
+*.swp
+
+# generated files
+*.dvi
+*.pdf
+*.ps
+songbook.tex
+
+# python cache
+htmlmaker/__pycache__/

@@ -20,9 +20,12 @@ class HTMLMaker(object):
     def substitute_latex_stuff(self, line):
         '''substitute LaTeX commands'''
         line = line.replace(r'\ldots{}', '..')
-        line = line.replace(r'\qquad', '  ')
-        line = line.replace(r'\quad', ' ')
-        line = line.replace(r'\ ', ' ')
+        line = line.replace(r'\qquad', '&nbsp;&nbsp;&nbsp;')
+        line = line.replace(r'\quad', '&nbsp;&nbsp;')
+        line = re.sub(r'(\[[^\]]+\]){}$', r'&nbsp;&nbsp;\1', line)
+        line = re.sub(r'([^\[])(\[[^\]]+\]){}', r'\2\1', line)
+        line = re.sub(r'^{}', r'&nbsp;', line)
+        line = line.replace(r'\ ', '&nbsp;')
         line = re.sub(r'\\chords{([^}]+)}', r'\1', line)
         line = line.replace(r'\#', '#')
         return line
@@ -39,7 +42,8 @@ class HTMLMaker(object):
                 # skip empty
                 if lines and line == '\n' and lines[-1] == '\n':
                     continue
-                line = self.substitute_latex_stuff(line)
+                if not self.is_latex(line):
+                    line = self.substitute_latex_stuff(line)
                 # find white space line break point
                 line_length = MAX_LINE_LENGTH
                 while (line_length > 0 and len(line) > line_length and
