@@ -9,6 +9,8 @@ MAX_LINE_LENGTH = 60
 
 class HTMLMaker(object):
 
+    chord_regex = re.compile(r'.*\[([^]]+)\].*')
+
     def make_valid_file_name(self, artist, title):
         '''reduce filename to valid ASCII letters'''
         artist, title = map(
@@ -46,20 +48,19 @@ class HTMLMaker(object):
                     line = self.substitute_latex_stuff(line)
                 # find white space line break point
                 line_length = MAX_LINE_LENGTH
-                while (line_length > 0 and len(line) > line_length and
-                        line[line_length] != ' '):
-                    line_length -= 1
-                # split line
-                if not self.is_latex(line) and len(line) > line_length:
-                    lines.append(line[:line_length])
-                    line = '&nbsp'*2 + line[line_length:]
+                #while (line_length > 0 and len(line) > line_length and
+                #    line[line_length] != ' '):
+                #    line_length -= 1
+                ## split line
+                #if not self.is_latex(line) and len(line) > line_length:
+                #    lines.append(line[:line_length])
+                #    line = '  ' + line[line_length:]
                 lines.append(line)
         return lines
 
     def create_html_file(self, filename):
         '''create HTML representation of the LaTeX file'''
         output_lines = []
-        regex = re.compile(r'.*\[([^]]+)\].*')
         title = 'kein Titel'
         artist = 'kein Artist'
         for line in self.readin_file(filename):
@@ -72,12 +73,12 @@ class HTMLMaker(object):
                     artist = line[start:-3]
                 continue
             # add empty line to have space for the chords
-            if regex.match(line):
-                output_lines.append('')
+            #if self.chord_regex.match(line):
+            #    output_lines.append('')
             # include chords HTML command
             line = re.sub(
                 r'\[([^]]+)\]',
-                r'<span class="chord">\1</span>',
+                r'<span>\1</span>',
                 line)
             output_lines.append(line)
 
