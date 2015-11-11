@@ -6,6 +6,9 @@ import argparse
 import logging
 
 
+logging.basicConfig(level=logging.INFO)
+
+
 def rm_special_chars(input_string):
     '''remove special characters from string'''
     special_chars = {u' ': '_', u'ü': u'ue', u'ä': 'ae',
@@ -57,6 +60,7 @@ def main(args):
                 l = l.replace('ADDHERETITLE', song_name)
                 l = l.replace('ADDHEREBAND', band_name)
                 fd_dest.write(l)
+    logging.info('created {}'.format(out_filename))
 
 
 if __name__ == '__main__':
