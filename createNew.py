@@ -65,9 +65,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Create new song ')
-    parser.add_argument('--artist', dest='artist', required=True,
-                        help='artist of the song')
-    parser.add_argument('--song', dest='song', required=True,
-                        help='name of the song')
+    parser.add_argument('artist', help='artist of the song')
+    parser.add_argument('song', help='name of the song')
     args = parser.parse_args()
     main(args)
